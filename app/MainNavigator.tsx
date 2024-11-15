@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from "react-redux";
 import Feed from '@/src/screens/Feed';
 import Profile from '@/src/screens/Profile';
@@ -13,6 +14,7 @@ const MainNavigator = () => {
 
     return (
         // <Provider store={store}>
+        <NavigationContainer>
                 <Stack.Navigator initialRouteName="Feed"
                     screenOptions={{
                         animationEnabled: false,
@@ -37,7 +39,8 @@ const MainNavigator = () => {
                         presentation: 'modal', headerShown: false
                     }}/>
                 </Stack.Navigator>
-        // </Provider>
+        {/* // </Provider> */}
+        </NavigationContainer>
     )
   }
 
