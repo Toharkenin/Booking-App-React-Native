@@ -59,7 +59,23 @@ export default function Signup({}) {
 
     const getDate = (date: Date) => {
         setBirthDay(date)
-    }
+    };
+
+     const tempSignup = async () => {
+        const value = {
+            firstName: inputs.firstName,
+            lastName: inputs.lastName,
+            phoneNumber: inputs.phoneNumber,
+            birthDay: 'birthDay',
+            // isAdmin: false,
+        }
+        try {
+            await AsyncStorage.setItem("user", JSON.stringify(value));
+        } catch (error) {
+            console.log(error);
+        };
+        navigation.navigate('Feed');
+    };
     
     //form validation, activates the button if all fields are valid
     // function SubmitButton({onPress}) { 
@@ -204,7 +220,8 @@ export default function Signup({}) {
                     height: 40,
                     width: 200,
                     marginHorizontal: 50,
-                    marginVertical: 10,}}/>
+                    marginVertical: 10,}}
+                    onPress={() => tempSignup()}/>
             </View>
             
         </TouchableWithoutFeedback>
