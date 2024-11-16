@@ -20,7 +20,7 @@ export default function Feed () {
         lastName: string,
     }
 
-// Async Storage of user
+// Async Storage - get user
 useEffect(() => {
     const getUser = async () => {
         const savedUser:any = await AsyncStorage.getItem("user");

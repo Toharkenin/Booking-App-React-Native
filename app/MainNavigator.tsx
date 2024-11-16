@@ -8,6 +8,7 @@ import { store } from '../src/redux/store';
 import Login from '@/src/screens/Login';
 import Signup from '@/src/screens/Signup';
 import OTPVerificationScreen from '@/src/screens/OTPVerificationScreen';
+import Appointments from '@/src/screens/Appointments';
 
 const MainNavigator = () => {
     const Stack = createStackNavigator();
@@ -26,9 +27,9 @@ const MainNavigator = () => {
                     <Stack.Screen name="Profile" component={Profile} options={{
                         presentation: 'modal', headerShown: false
                     }}/>
-                    {/* <Stack.Screen name="Schedule" component={Schedule} options={{
+                    <Stack.Screen name="Appointments" component={Appointments} options={{
                         presentation: 'modal', headerShown: false
-                    }}/>*/}
+                    }}/>
                     <Stack.Screen name="Login" component={Login} options={{
                         presentation: 'modal', headerShown: false
                     }}/>

@@ -26,7 +26,7 @@ export default function BottomTabNavigator() {
                 <Icon name="home" text="בית" onPress={() => navigation.navigate('Feed')} color={"blue"}/>
                 <Icon name="user" text="פרופיל" onPress={() => navigation.navigate('Profile')} color={"blue"}/>
                 <Icon name="pluscircle" text="קביעת תור" onPress={() => null} color="#F57C00"/>
-                <Icon name="calendar" text="התורים שלי" onPress={() => null} color={"blue"}/>
+                <Icon name="calendar" text="התורים שלי" onPress={() => navigation.navigate('Appointments')} color={"blue"}/>
                 <Icon name="logout" text="עוד" onPress={() => null} color={"blue"}/>
         </View>
     );

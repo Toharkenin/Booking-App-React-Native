@@ -5,6 +5,7 @@ export type RootStackParamList = {
     Login: undefined;
     Schedule: undefined;
     Signup: undefined;
+    Appointments: undefined;
     OTPVerificationScreen: undefined;
   };
   
