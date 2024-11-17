@@ -1,14 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { Provider } from "react-redux";
 import Feed from '@/src/screens/Feed';
 import Profile from '@/src/screens/Profile';
-import { store } from '../src/redux/store';
 import Login from '@/src/screens/Login';
 import Signup from '@/src/screens/Signup';
 import OTPVerificationScreen from '@/src/screens/OTPVerificationScreen';
 import Appointments from '@/src/screens/Appointments';
+import ScheduleAppt from '@/src/screens/ScheduleAppt';
 
 const MainNavigator = () => {
     const Stack = createStackNavigator();
@@ -28,6 +27,9 @@ const MainNavigator = () => {
                         presentation: 'modal', headerShown: false
                     }}/>
                     <Stack.Screen name="Appointments" component={Appointments} options={{
+                        presentation: 'modal', headerShown: false
+                    }}/>
+                    <Stack.Screen name="ScheduleAppt" component={ScheduleAppt} options={{
                         presentation: 'modal', headerShown: false
                     }}/>
                     <Stack.Screen name="Login" component={Login} options={{

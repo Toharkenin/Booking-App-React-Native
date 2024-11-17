@@ -6,6 +6,7 @@ export type RootStackParamList = {
     Schedule: undefined;
     Signup: undefined;
     Appointments: undefined;
+    ScheduleAppt: undefined;
     OTPVerificationScreen: undefined;
   };
   
