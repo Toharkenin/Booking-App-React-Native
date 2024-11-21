@@ -51,7 +51,7 @@ export default function ScheduleAppt() {
             </View>
             {
                 services ? <Services getService={(e)=> getService(e)}/> : 
-                schedule ? <UserCalendar getDate={(e)=> getService(e)}/> : null
+                schedule ? <UserCalendar/> : null
             }
         </SafeAreaView>
         <BottomTabNavigator />

@@ -7,7 +7,10 @@
 //     getDate: (date: string) => void;
 //   }
 
-// export default function SetCalendar({getDate}: SetCalendarProps) {
+// export default function SetCalendar(){
+//   return (<></>)
+// };
+// ({getDate}: SetCalendarProps) {
 
 //   const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
 //   const endOfWeek = moment().endOf('week').format('YYYY-MM-DD');
@@ -383,41 +386,44 @@
 
 
 
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import WeeklyCalendar from 'react-native-weekly-calendar';
+import {
+  endOfWeek,
+  isWithinInterval,
+  startOfWeek,
+} from "date-fns";
 
-const MyWeeklyCalendar = () => {
-  // Example events
-  const events = [
-    {
-      id: 1,
-      description: 'Meeting with team',
-      startDate: '2024-11-13T10:00:00.000Z', // ISO format date
-      endDate: '2024-11-13T11:00:00.000Z',
-      color: 'blue',
-    },
-    {
-      id: 2,
-      description: 'Lunch with client',
-      startDate: '2024-11-14T12:00:00.000Z',
-      endDate: '2024-11-14T13:00:00.000Z',
-      color: 'green',
-    },
-  ];
+import {
+  DayPicker,
+  WeekProps,
+  CalendarWeek, 
+} from "react-day-picker";
+
+
+
+
+// Basically this only returns a single Row with the days of the current week
+export default function UserCalendar() {
+  const isDateInCurrentWeek = (dateToCheck: Date) => {
+    const today = new Date();
+    const start = startOfWeek(today);
+    const end = endOfWeek(today);
+    return isWithinInterval(dateToCheck, { start, end });
+  };
+  // const isNotCurrentWeek = props.week.days.every((date) => !isDateInCurrentWeek(date));
+  // if (isNotCurrentWeek) return <></>;
+  // return <Week {...props} />;
 
   return (
-    <View style={styles.container}>
-      <WeeklyCalendar events={events} />
-    </View>
+    <>
+      <div>
+        <div>
+          <DayPicker
+            // components={{ Week: CalendarWeek }}
+            showOutsideDays
+            mode="single"
+          />
+        </div>
+      </div>
+    </>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
-
-export default MyWeeklyCalendar;
+}
