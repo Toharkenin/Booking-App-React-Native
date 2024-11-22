@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Animated, {
   useSharedValue, withSpring, useAnimatedStyle, withRepeat
 } from 'react-native-reanimated';
+import { Button } from 'react-native-elements';
 
 const servicesArray = [
   {name: 'תספורת'},
@@ -19,6 +20,7 @@ interface serviceProp {
 export default function Services({ getService }: serviceProp) {
 
   const onServicePressed = (service: string) => {
+      
       getService(service);
   }
 
@@ -51,6 +53,7 @@ export default function Services({ getService }: serviceProp) {
                     <Text style={styles.btnText}>{item.name}</Text>
               </TouchableOpacity>
           ))}
+          {/* <Button title={'המשך'}/> */}
           </View>
           {/* </Animated.View> */}
         </View>
