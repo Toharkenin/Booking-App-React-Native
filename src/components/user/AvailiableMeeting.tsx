@@ -22,7 +22,8 @@ export default function Times({ getMeeting }: getMeetings) {
     const [docExists, setDocExists] = useState(true);
     const [appointmentsList, setAppointmentsList] = useState<Event[]>([]);
     const [loading, setLoading] = useState(false);
-    const date = useSelector((state: RootState) => state.appts.date.date);
+    const date = useSelector((state: RootState) => state.appointment.appointment);
+    console.log(date);
     let events:Event[] = [];
 
     const onMeetingPressed = (startTime: string, endTime:string, index: number) => {

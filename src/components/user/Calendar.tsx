@@ -9,8 +9,8 @@ interface SetCalendarProps {
 
 export default function SetCalendar({getDate}: SetCalendarProps) {
 
-  const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
-  const endOfWeek = moment().endOf('week').format('YYYY-MM-DD');
+  // const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
+  // const endOfWeek = moment().endOf('week').format('YYYY-MM-DD');
 
   LocaleConfig.locales['il'] = {
     monthNames: [
@@ -48,15 +48,17 @@ const [selectedDate, setSelectedDates] = useState('');
   };
 
 
+
+
   return (
       <View>
             <Calendar
-            minDate={startOfWeek}
-            maxDate={endOfWeek}
+            minDate={new Date()}
+            maxDate={"2030-05-30"}
             markedDates={markedDates}
             selectedDate={selectedDate}
-            onDayPress={(day: DateData) => {
-              onDayPress(day.dateString);
+            onDayPress={(day: string) => {
+              onDayPress(day);
             }}
             style={styles.calendarStyle}
             theme={{
@@ -66,7 +68,6 @@ const [selectedDate, setSelectedDates] = useState('');
             todayTextColor: '#C19203',
             dayTextColor: '#C19203',
             textDisabledColor: '#A9A9A9',
-            // selectedDayBackgroundColor: '#C19203',
             monthTextColor: '#C19203',
             textMonthFontWeight: 'bold',
             textDayFontWeight: 'bold',

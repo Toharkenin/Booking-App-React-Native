@@ -14,6 +14,7 @@ I18nManager.forceRTL(true);
 export default function ScheduleAppt() {
     const [services, setServices] = useState<boolean>(true); 
     const [service, setService] = useState<string>(''); 
+    const [date, setDate] = useState<string>(''); 
     const [schedule, setSchedule] = useState<boolean>(false); 
     const [confirm, setConfirm] = useState<boolean>(false); 
     const [popup, setPopup] = useState<boolean>(false); 
@@ -23,6 +24,11 @@ export default function ScheduleAppt() {
         setServices(false);
         setSchedule(true);
     };
+
+    const getDate = (date:string) => {
+        setDate(date);
+        
+  };
 
     const backToServices = () => {
         setServices(true);
@@ -51,7 +57,7 @@ export default function ScheduleAppt() {
             </View>
             {
                 services ? <Services getService={(e)=> getService(e)}/> : 
-                schedule ? <UserCalendar/> : null
+                schedule ? <UserCalendar getDate={(e) => getDate(e)}/> : null
             }
         </SafeAreaView>
         <BottomTabNavigator />

@@ -8,13 +8,13 @@ import { combineReducers } from 'redux';
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    Appointment: appointmentReducer,
+    appointment: appointmentReducer,
   },
 });
 
 const rootReducer = combineReducers({
   user: userReducer,
-  appts: appointmentReducer,
+  appointment: appointmentReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -26,5 +26,5 @@ export const appointmentSlice = createSlice({
 });
 
 export const { set, add, complete } = appointmentSlice.actions;
-export const selectUser = (state: RootState) => state.user.user;
+export const selectAppointment = (state: RootState) => state.appointment.appointment;
 export default appointmentSlice.reducer;
