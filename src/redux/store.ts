@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/userSlice';
-import Appointments from '../screens/Appointments';
-// import dateReducer from './reducers/dateSlice';
+import dateReducer from './reducers/dateSlice';
 import appointmentReducer from './reducers/appointmentSlice';
 import { combineReducers } from 'redux';
 
@@ -9,12 +8,14 @@ export const store = configureStore({
   reducer: {
     user: userReducer,
     appointment: appointmentReducer,
+    date: dateReducer,
   },
 });
 
 const rootReducer = combineReducers({
   user: userReducer,
   appointment: appointmentReducer,
+  date: dateReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

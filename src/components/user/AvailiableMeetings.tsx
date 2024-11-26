@@ -16,22 +16,32 @@ interface Event {
     startTime: string,
     endTime: string,
     index: number,
+};
+
+interface dateProp{
+  date: string
 }
 
-export default function Times({ getMeeting }: getMeetings) {
+export default function AvaliableMeetings({ getMeeting, date }: getMeetings & dateProp) {
     const [docExists, setDocExists] = useState(true);
     const [appointmentsList, setAppointmentsList] = useState<Event[]>([]);
     const [loading, setLoading] = useState(false);
-    const date = useSelector((state: RootState) => state.appointment.appointment);
-    console.log(date);
+    const [selectedDate, setSelectedDate] = useState<string>("");
+    // const date = useSelector((state: RootState) => state.appointment.appointment);
     let events:Event[] = [];
-
+  
     const onMeetingPressed = (startTime: string, endTime:string, index: number) => {
         getMeeting(startTime, endTime, index);
     };
- 
+
     useEffect(() => {
-      const fetchData = async () => {
+      if (date) {
+        console.log(date);
+        fetchData(date);
+      }
+    }, [date]);
+      
+  const fetchData = async (date: string) => {
         setLoading(true);
           const docRef = doc(db, 'Appointments', date);
           const docSnap = await getDoc(docRef);
@@ -40,7 +50,7 @@ export default function Times({ getMeeting }: getMeetings) {
             while (counter < docSnap.data().appointments.length){
               if(docSnap.data().appointments[counter].available === true) {
                   events.push(
-                    docSnap.data().appointments[counter],
+                      docSnap.data().appointments[counter],
                   )
               }
               counter++;
@@ -55,22 +65,11 @@ export default function Times({ getMeeting }: getMeetings) {
           if(docSnap.exists() && events.length === 0) {
               setDocExists(false);
           }
-      }
-      fetchData();
-      }, []);
+      };
 
-    //   useEffect(() => {
-    //     console.log('a', appointmentsList)
-    // }, []);
-
-    
-    return (  
-        <View style={styles.container}>
-              {loading ? <Loader/> :
-                docExists ? 
-                <>
-                  <Text style={styles.header}>לאיזה שעה תרצה לקבוע?</Text>
-                  <ScrollView showsVerticalScrollIndicator={false}>
+    const renderAppointments = () => {
+      console.log('innnnnnnn')
+      return <ScrollView showsVerticalScrollIndicator={false}>
                       {appointmentsList.map((item, index) => (
                           <Pressable 
                               key={index} 
@@ -80,6 +79,16 @@ export default function Times({ getMeeting }: getMeetings) {
                           </Pressable>
                       ))}
                   </ScrollView>
+    };
+
+    
+    return (  
+        <View style={styles.container}>
+              {loading ? <Loader/> :
+                docExists ? 
+                <>
+                  {/* <Text style={styles.header}>לאיזה שעה תרצה לקבוע?</Text> */}
+                  {renderAppointments()}
                 </> :
                 <>
                     <Text style={styles.header}>אין תורים להציג בתאריך זה</Text>
@@ -95,7 +104,7 @@ export default function Times({ getMeeting }: getMeetings) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#000",
+        backgroundColor: "#fff",
         padding: 16,
         height: 500,
         borderTopLeftRadius: 15,

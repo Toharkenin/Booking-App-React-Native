@@ -10,10 +10,11 @@ const firebaseConfig: {
   storageBucket: string;
   messagingSenderId: string;
   appId: string;
+  // databaseURL?: string;
 } = {
   apiKey: "AIzaSyAiluNt-dyX4g9FktDOHnCKFR_T0nh6Gdk",
   authDomain: "booking-app-602ef.firebaseapp.com",
-//   databaseURL: "https://booking-app-602ef-default-rtdb.firebaseio.com",
+  // databaseURL: "https://booking-app-602ef-default-rtdb.firebaseio.com",
   projectId: "booking-app-602ef",
   storageBucket: "booking-app-602ef.appspot.com",
   messagingSenderId: "303465012338",
