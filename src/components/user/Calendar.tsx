@@ -3,7 +3,6 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, I18nManager } from 
 import moment from "moment";
 import "moment/locale/he";
 import Icon from "react-native-vector-icons/AntDesign"
-///TODO: Right to left weekly calendar!!!!
 
 interface Day {
   date: string;
@@ -19,7 +18,6 @@ moment.locale("he");
 const UserCalendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<Day[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
-  console.log("works");
   // Generate the days for the current week
   const getWeekDays = (startDate: moment.Moment) => {
     const weekDays: Day[] = [];
@@ -63,7 +61,7 @@ const UserCalendar: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.navigation}>
         <TouchableOpacity onPress={() => handleWeekChange("prev")}>
-          <Icon name="left" size={22} style={styles.navButton} />
+          <Icon name="right" size={22} style={styles.navButton} />
         </TouchableOpacity>
         {currentWeek.length >= 7 ? (
           <Text style={styles.currentWeek}>
@@ -74,14 +72,14 @@ const UserCalendar: React.FC = () => {
           <Text style={styles.currentWeek}>Loading...</Text>
         )}
         <TouchableOpacity onPress={() => handleWeekChange("next")}>
-          <Icon name="right" size={22} style={styles.navButton} />
+          <Icon name="left" size={22} style={styles.navButton} />
         </TouchableOpacity>
       </View>
 
       {/* Weekly Calendar */}
       <FlatList
         data={currentWeek}
-        horizontal
+        // horizontal
         keyExtractor={(item) => item.date}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -99,6 +97,8 @@ const UserCalendar: React.FC = () => {
         )}
         inverted={I18nManager.isRTL}
         showsHorizontalScrollIndicator={false}
+        // style={styles.flatListStyle}
+        contentContainerStyle={styles.flatListStyle}
       />
     </View>
   );
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     backgroundColor: "#f5f5f5",
-
+    marginTop: 20,
   },
   navigation: {
     flexDirection: "row",
@@ -119,29 +119,35 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   navButton: {
-    color: "#c3b091",
+    color: "#FFA500",
   },
   currentWeek: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 500,
+  },
+  flatListStyle: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   dateContainer: {
     alignItems: "center",
-    padding: 5,
-    marginHorizontal: 5,
+    width: 40,
+    paddingVertical: 16,
     borderRadius: 10,
     backgroundColor: "#fff",
     elevation: 2,
   },
   selectedDate: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#FFA500",
   },
   dayOfWeek: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 500,
     color: "#333",
   },
   date: {
+    marginTop: 5,
     fontSize: 14,
     color: "#333",
   },
