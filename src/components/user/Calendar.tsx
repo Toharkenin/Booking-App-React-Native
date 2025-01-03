@@ -3,19 +3,23 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, I18nManager } from 
 import moment from "moment";
 import "moment/locale/he";
 import Icon from "react-native-vector-icons/AntDesign"
-
+///TODO: Right to left weekly calendar!!!!
 
 interface Day {
   date: string;
   isSelected: boolean;
 };
 
+if (!I18nManager.isRTL) {
+  I18nManager.forceRTL(true);
+}
+
 moment.locale("he");
 
 const UserCalendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<Day[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
-
+  console.log("works");
   // Generate the days for the current week
   const getWeekDays = (startDate: moment.Moment) => {
     const weekDays: Day[] = [];
@@ -32,6 +36,7 @@ const UserCalendar: React.FC = () => {
     const weekDays = getWeekDays(today);
     setCurrentWeek(weekDays);
     setSelectedDate(today.format("YYYY-MM-DD"));
+
   }, []);
 
   // Handle selecting a date
@@ -40,6 +45,7 @@ const UserCalendar: React.FC = () => {
       prevWeek.map((day) => ({ ...day, isSelected: day.date === date }))
     );
     setSelectedDate(date);
+    console.log("Selected date", selectedDate);
   };
 
   // Navigate weeks
@@ -91,6 +97,7 @@ const UserCalendar: React.FC = () => {
             <Text style={styles.date}>{moment(item.date).format("D")}</Text>
           </TouchableOpacity>
         )}
+        inverted={I18nManager.isRTL}
         showsHorizontalScrollIndicator={false}
       />
     </View>
