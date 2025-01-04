@@ -9,13 +9,18 @@ interface Day {
   isSelected: boolean;
 };
 
+interface dateProp {
+  getDate: (date: string) => void;
+};
+
 if (!I18nManager.isRTL) {
   I18nManager.forceRTL(true);
 }
 
 moment.locale("he");
 
-const UserCalendar: React.FC = () => {
+export default function UserCalendar({ getDate }: dateProp) {
+
   const [currentWeek, setCurrentWeek] = useState<Day[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
   // Generate the days for the current week
@@ -43,6 +48,7 @@ const UserCalendar: React.FC = () => {
       prevWeek.map((day) => ({ ...day, isSelected: day.date === date }))
     );
     setSelectedDate(date);
+    getDate(date);
     console.log("Selected date", selectedDate);
   };
 
@@ -104,7 +110,6 @@ const UserCalendar: React.FC = () => {
   );
 };
 
-export default UserCalendar;
 
 const styles = StyleSheet.create({
   container: {
