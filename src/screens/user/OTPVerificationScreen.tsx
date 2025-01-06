@@ -3,7 +3,7 @@ import { View, TextInput, Button, Text } from 'react-native';
 import { getAuth, PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../utils/NavigationTypes';
+import { RootStackParamList } from '../../utils/NavigationTypes';
 
 export default function OTPVerificationScreen() {
   const [verificationCode, setVerificationCode] = useState<string>('');

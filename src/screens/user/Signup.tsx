@@ -1,18 +1,18 @@
 import React, { useState, useRef } from 'react';
-import { Text, Image, StyleSheet, Keyboard, View, Alert, TouchableWithoutFeedback, Pressable} from 'react-native';
+import { Text, Image, StyleSheet, Keyboard, View, Alert, TouchableWithoutFeedback, Pressable } from 'react-native';
 // import logo from '../assets/logo-dark.png';
-import Input from '../components/user/Input';
+import Input from '../../components/user/Input';
 // import CustomButton from '../components/user/CustomButton';
 // import BirthDayInput from '../components/user/BirtheDayInput';
 // import Popup from '../components/user/Popup';
 import { useDispatch } from 'react-redux';
-import { login } from '../../src/redux/reducers/userSlice';
-import { db, app } from '../../Firebase';
+import { login } from '../../redux/reducers/userSlice';
+import { db, app } from '../../../Firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../utils/NavigationTypes';
-import {  AppDispatch } from '../redux/store';
+import { RootStackParamList } from '../../utils/NavigationTypes';
+import { AppDispatch } from '../../redux/store';
 // import { getAuth, signInWithPhoneNumber, getCodeFromUserInput } from 'firebase/auth';
 // import Loader from '../components/user/Loader';
 // import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha'
@@ -21,7 +21,7 @@ import { Button } from 'react-native-elements';
 
 type InputTypes = {
     [key: string]: string;
-  };
+};
 
 interface Inputs {
     firstName: string;
@@ -29,7 +29,7 @@ interface Inputs {
     phoneNumber: string;
 }
 
-export default function Signup({}) {
+export default function Signup({ }) {
 
     //States
     const [inputs, setInputs] = useState<Inputs>({
@@ -38,11 +38,11 @@ export default function Signup({}) {
         phoneNumber: '',
     });
 
-    const [birthDay, setBirthDay]= useState<Date>();
-    const [loading, setLoading]= useState<boolean>(false);
-    const [welcomeMessage, setWelcomeMessage]= useState<boolean>(false);
+    const [birthDay, setBirthDay] = useState<Date>();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [welcomeMessage, setWelcomeMessage] = useState<boolean>(false);
     const [displayOTPInput, setDisplayOTPInput] = useState<boolean>(false);
-    const dispatch:AppDispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const [code, setCode] = useState<string>('');
 
     const recaptchaVerifier = useRef(null);
@@ -53,15 +53,15 @@ export default function Signup({}) {
 
     const countryCode = "+972";
 
-    const onChange = (text:string, input: keyof InputTypes) => {
-        setInputs((prevState) => ({...prevState, [input]:text}));
+    const onChange = (text: string, input: keyof InputTypes) => {
+        setInputs((prevState) => ({ ...prevState, [input]: text }));
     };
 
     const getDate = (date: Date) => {
         setBirthDay(date)
     };
 
-     const tempSignup = async () => {
+    const tempSignup = async () => {
         const value = {
             firstName: inputs.firstName,
             lastName: inputs.lastName,
@@ -76,7 +76,7 @@ export default function Signup({}) {
         };
         navigation.navigate('Feed');
     };
-    
+
     //form validation, activates the button if all fields are valid
     // function SubmitButton({onPress}) { 
     //     if (!inputs.firstName ||
@@ -146,7 +146,7 @@ export default function Signup({}) {
         //         console.log('ee', error)
         //     })
     }
-    
+
     // const onSignupPressed = () => {
 
     //         confirmationResult.confirm(code).then((result) => {
@@ -190,48 +190,49 @@ export default function Signup({}) {
         // {!displayOTPInput ? 
         // <>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={{marginBottom: 40, paddingTop: 30, flex: 1}}>
-            {/* <Image source= {logo} style={styles.logo} resizeMode="contain"/> */}
-            <Input 
-                name="שם פרטי" 
-                iconName="user-o" 
-                onChangeText={(text) => onChange(text, 'firstName')}
-                autoFocus={true}
-                placeholder='שם פרטי'/>                                     
-            <Input 
-                name="שם משפחה" 
-                iconName="user-o"
-                onChangeText={text => onChange(text, 'lastName')}
-                autoFocus={true}
-                placeholder='שם משפחה'/>
-            <Input 
-                name="טלפון-נייד" 
-                maxLength={10}
-                iconName="phone"
-                keyboardType="numeric" 
-                onChangeText={text => onChange(text, 'phoneNumber')}
-                autoFocus={true}
-                placeholder='טלפון נייד'/>
-            {/* <BirthDayInput getDate={(e)=>getDate(e)}
+            <View style={{ marginBottom: 40, paddingTop: 30, flex: 1 }}>
+                {/* <Image source= {logo} style={styles.logo} resizeMode="contain"/> */}
+                <Input
+                    name="שם פרטי"
+                    iconName="user-o"
+                    onChangeText={(text) => onChange(text, 'firstName')}
+                    autoFocus={true}
+                    placeholder='שם פרטי' />
+                <Input
+                    name="שם משפחה"
+                    iconName="user-o"
+                    onChangeText={text => onChange(text, 'lastName')}
+                    autoFocus={true}
+                    placeholder='שם משפחה' />
+                <Input
+                    name="טלפון-נייד"
+                    maxLength={10}
+                    iconName="phone"
+                    keyboardType="numeric"
+                    onChangeText={text => onChange(text, 'phoneNumber')}
+                    autoFocus={true}
+                    placeholder='טלפון נייד' />
+                {/* <BirthDayInput getDate={(e)=>getDate(e)}
                 autoFocus={true}/> */}
-            <Button  title="שלחו לי קוד בבקשה"
-                buttonStyle={{ backgroundColor: 'rgba(255, 140, 66, 1)' }}
-                containerStyle={{
-                    height: 40,
-                    width: 200,
-                    marginHorizontal: 50,
-                    marginVertical: 10,}}
-                    onPress={() => tempSignup()}/>
+                <Button title="שלחו לי קוד בבקשה"
+                    buttonStyle={{ backgroundColor: 'rgba(255, 140, 66, 1)' }}
+                    containerStyle={{
+                        height: 40,
+                        width: 200,
+                        marginHorizontal: 50,
+                        marginVertical: 10,
+                    }}
+                    onPress={() => tempSignup()} />
             </View>
-            
+
         </TouchableWithoutFeedback>
 
 
     );
-  };
+};
 
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     logo: {
         height: 160,
         width: 160,
@@ -274,12 +275,12 @@ export default function Signup({}) {
 //             <Text style={styles.primText}>לחץ להתחברות</Text>
 //     </Pressable>
 // </View>
-//     </> : 
+//     </> :
 //      <View style={{marginTop: 30}}>
 //      <Text style={styles.header}>הזן את הקוד שקיבלת</Text>
-//      <Input 
+//      <Input
 //          value={code}
-//          name="קוד" 
+//          name="קוד"
 //          iconName2="message-processing-outline"
 //          keyboardType="numeric"
 //          onChangeText={setCode}

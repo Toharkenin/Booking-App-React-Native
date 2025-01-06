@@ -1,14 +1,11 @@
 import React, { useState, useRef } from 'react';
 import {View, Text, StyleSheet, Image, Pressable, 
     Keyboard, ScrollView, Alert, TouchableWithoutFeedback,} from 'react-native';
-import Input from '../components/user/Input';
-import ButtonCustom from '../components/user/ButtonCustom';
-// // import logo from '../assets/logo-dark.png';
-// import Loader from '../components/user/Loader';
-// import Popup from '../components/user/Popup';
+import Input from '../../components/user/Input';
+import ButtonCustom from '../../components/user/ButtonCustom';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/reducers/userSlice';
-import { db, app, auth } from '../../Firebase';
+import { login } from '../../redux/reducers/userSlice';
+import { db, app, auth } from '../../../Firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { PhoneAuthProvider, signInWithCredential } from 'firebase/auth'
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha'
@@ -18,7 +15,7 @@ import * as Yup from 'yup';
 import { Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../utils/NavigationTypes';
+import { RootStackParamList } from '../../utils/NavigationTypes';
 
 interface Number {
     phoneNumber: string;

@@ -5,10 +5,10 @@ import Animated, {
   useSharedValue, withSpring, useAnimatedStyle, withRepeat
 } from 'react-native-reanimated';
 import { Divider } from 'react-native-elements';
-import BottomTabNavigator from '../components/user/BottomTabNavigator';
-import Services from '../components/user/Services';
-import UserCalendar from '../components/user/Calendar';
-import AvaliableMeetings from '../components/user/AvailiableMeetings';
+import BottomTabNavigator from '../../components/user/BottomTabNavigator';
+import Services from '../../components/user/Services';
+import UserCalendar from '../../components/user/Calendar';
+import AvaliableMeetings from '../../components/user/AvailiableMeetings';
 
 // I18nManager.forceRTL(true);
 
