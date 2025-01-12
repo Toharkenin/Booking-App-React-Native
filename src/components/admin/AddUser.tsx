@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, Alert} from 'react-native';
 import BirthDayInput from '../user/BirtheDayInput';
-import CustomButton from '../user/CustomButton';
+import CustomButton from '../user/ButtonCustom';
 import Input from '../user/Input';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
-import Loader from '../user/Loader';
+import Loader from '../Loader';
 import Popup from '../user/Popup';
 
 export default function AddUser(props) {
@@ -23,7 +23,7 @@ export default function AddUser(props) {
 
     const countryCode = "+972";
 
-    const onChange = (text, input) => {
+    const onChange = (text:number, input) => {
         setInputs((prevState) => ({...prevState, [input]:text}));
     };
 

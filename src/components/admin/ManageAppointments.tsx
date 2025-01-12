@@ -11,7 +11,7 @@ import AdminCalendar from './AdminCalendar';
 import { createAppointmentsList } from '../../util/firebaseApptsSettings';
 import { db } from '../../../Firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import Loader from '../user/Loader';
+import Loader from '../Loader';
 
 export default function ManageAppointments() {
 

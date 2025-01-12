@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TextInput, ScrollView,
     FlatList, TouchableOpacity, Alert} from 'react-native';
 import CustomButton from '../user/CustomButton';
 import { db } from '../../../Firebase';
-import Loader from '../user/Loader';
+import Loader from '../Loader';
 import {deleteDoc, doc, getDoc, setDoc, onSnapshot} from 'firebase/firestore';
 
 export default function Message() {

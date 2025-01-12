@@ -7,7 +7,7 @@ import AddUser from './AddUser';
 import { db } from '../../../Firebase';
 import {collection, getDoc, deleteDoc, doc, onSnapshot, setDoc, updateDoc} from 'firebase/firestore';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Loader from '../user/Loader';
+import Loader from '../Loader';
 import Communications from 'react-native-communications';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
