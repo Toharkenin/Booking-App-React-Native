@@ -23,7 +23,7 @@ export default function AddUser(props) {
 
     const countryCode = "+972";
 
-    const onChange = (text:number, input) => {
+    const onChange = (text, input) => {
         setInputs((prevState) => ({...prevState, [input]:text}));
     };
 
